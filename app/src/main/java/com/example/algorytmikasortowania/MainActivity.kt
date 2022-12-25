@@ -20,7 +20,7 @@ fun MutableList<Int>.bubbleSort() {
         }
     }
 }
-
+// quick sort
 fun MutableList<Int>.quickSort() {
     quickSort(0, size - 1)
 }
@@ -48,7 +48,7 @@ fun MutableList<Int>.partition(low: Int, high: Int): Int {
 
     return i + 1
 }
-
+//insert sort
 fun MutableList<Int>.insertSort() {
     for (i in 1 until size) {
         val current = this[i]
@@ -60,6 +60,39 @@ fun MutableList<Int>.insertSort() {
         this[j] = current
     }
 }
+//heap sort
+fun MutableList<Int>.heapSort() {
+    for (i in size / 2 - 1 downTo 0) {
+        heapify(size, i)
+    }
+    for (i in size - 1 downTo 0) {
+        val temp = this[0]
+        this[0] = this[i]
+        this[i] = temp
+        heapify(i, 0)
+    }
+}
+
+fun MutableList<Int>.heapify(size: Int, rootIndex: Int) {
+    var largest = rootIndex
+    val leftChild = 2 * rootIndex + 1
+    val rightChild = 2 * rootIndex + 2
+
+    if (leftChild < size && this[leftChild] > this[largest]) {
+        largest = leftChild
+    }
+    if (rightChild < size && this[rightChild] > this[largest]) {
+        largest = rightChild
+    }
+    if (largest != rootIndex) {
+        val temp = this[rootIndex]
+        this[rootIndex] = this[largest]
+        this[largest] = temp
+
+        heapify(size, largest)
+    }
+}
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,6 +135,12 @@ class MainActivity : AppCompatActivity() {
                     lista.insertSort()
             }
             czasInsert.text = "${insertSortTime}ms"
+            //HeapSort Time
+            val heapSortTime = measureTimeMillis {
+                for (n in 1..iloscRazy.toString().toInt())
+                    lista.heapSort()
+            }
+            czasHeap.text = "${heapSortTime}ms"
         }
     }
 }
