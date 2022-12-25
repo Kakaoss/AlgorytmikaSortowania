@@ -49,6 +49,18 @@ fun MutableList<Int>.partition(low: Int, high: Int): Int {
     return i + 1
 }
 
+fun MutableList<Int>.insertSort() {
+    for (i in 1 until size) {
+        val current = this[i]
+        var j = i
+        while (j > 0 && this[j - 1] > current) {
+            this[j] = this[j - 1]
+            j--
+        }
+        this[j] = current
+    }
+}
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             // Bubble sort Time
             val bubbleSortTime = measureTimeMillis {
                 for (n in 1..iloscRazy.toString().toInt())
-                lista.bubbleSort()
+                    lista.bubbleSort()
             }
             czasBubble.text = "${bubbleSortTime}ms"
 
@@ -84,7 +96,12 @@ class MainActivity : AppCompatActivity() {
                     lista.quickSort()
             }
             czasQuick.text = "${quickSortTime}ms"
-
+            //InsertSort Time
+            val insertSortTime = measureTimeMillis {
+                for (n in 1..iloscRazy.toString().toInt())
+                    lista.insertSort()
+            }
+            czasInsert.text = "${insertSortTime}ms"
         }
     }
 }
