@@ -164,7 +164,7 @@
         app:layout_constraintVertical_bias="0.272" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/czasQuick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -175,7 +175,7 @@
         app:layout_constraintVertical_bias="0.035" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/czasBubble"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -186,7 +186,7 @@
         app:layout_constraintVertical_bias="0.095" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/czasInsert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -197,7 +197,7 @@
         app:layout_constraintVertical_bias="0.154" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/czasHeap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -208,7 +208,7 @@
         app:layout_constraintVertical_bias="0.212" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/czasMerge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
