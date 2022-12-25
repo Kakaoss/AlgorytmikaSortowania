@@ -8,6 +8,7 @@ import android.widget.TextView
 import kotlin.random.Random
 import kotlin.system.measureTimeMillis
 
+// Bubble sort
 fun MutableList<Int>.bubbleSort() {
     for (i in 0 until size - 1) {
         for (j in 0 until size - i - 1) {
@@ -18,6 +19,34 @@ fun MutableList<Int>.bubbleSort() {
             }
         }
     }
+}
+
+fun MutableList<Int>.quickSort() {
+    quickSort(0, size - 1)
+}
+fun MutableList<Int>.quickSort(low: Int, high: Int) {
+    if (low < high) {
+        val pivotIndex = partition(low, high)
+        quickSort(low, pivotIndex - 1)
+        quickSort(pivotIndex + 1, high)
+    }
+}
+fun MutableList<Int>.partition(low: Int, high: Int): Int {
+    val pivot = this[high]
+    var i = low - 1
+    for (j in low until high) {
+        if (this[j] <= pivot) {
+            i++
+            val temp = this[i]
+            this[i] = this[j]
+            this[j] = temp
+        }
+    }
+    val temp = this[i + 1]
+    this[i + 1] = this[high]
+    this[high] = temp
+
+    return i + 1
 }
 
 class MainActivity : AppCompatActivity() {
@@ -48,6 +77,14 @@ class MainActivity : AppCompatActivity() {
                 lista.bubbleSort()
             }
             czasBubble.text = "${bubbleSortTime}ms"
+
+            //QuickSort Time
+            val quickSortTime = measureTimeMillis {
+                for (n in 1..iloscRazy.toString().toInt())
+                    lista.quickSort()
+            }
+            czasQuick.text = "${quickSortTime}ms"
+
         }
     }
 }
