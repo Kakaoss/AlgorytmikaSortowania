@@ -159,45 +159,47 @@ class MainActivity : AppCompatActivity() {
         btnSortuj.setOnClickListener {
 
             lista.clear()
-            
-            for (i in 1..iloscElementow.toString().toInt()){
-                lista.add(Random.nextInt())
-            }
+            if (iloscElementow.isNotEmpty() && iloscRazy.isNotEmpty()) {
+                if (iloscElementow.toString().toInt() >= 1)
+                    for (i in 1..iloscElementow.toString().toInt()) {
+                        lista.add(Random.nextInt())
+                    }
 
-            // Bubble sort Time
-            val bubbleSortTime = measureTimeMillis {
-                for (n in 1..iloscRazy.toString().toInt())
-                    lista.bubbleSort()
-            }
-            czasBubble.text = "${bubbleSortTime}ms"
+                // Bubble sort Time
+                val bubbleSortTime = measureTimeMillis {
+                    for (n in 1..iloscRazy.toString().toInt())
+                        lista.bubbleSort()
+                }
+                czasBubble.text = "${bubbleSortTime}ms"
 
-            //QuickSort Time
-            val quickSortTime = measureTimeMillis {
-                for (n in 1..iloscRazy.toString().toInt())
-                    lista.quickSort()
-            }
-            czasQuick.text = "${quickSortTime}ms"
+                //QuickSort Time
+                val quickSortTime = measureTimeMillis {
+                    for (n in 1..iloscRazy.toString().toInt())
+                        lista.quickSort()
+                }
+                czasQuick.text = "${quickSortTime}ms"
 
-            //InsertSort Time
-            val insertSortTime = measureTimeMillis {
-                for (n in 1..iloscRazy.toString().toInt())
-                    lista.insertSort()
-            }
-            czasInsert.text = "${insertSortTime}ms"
+                //InsertSort Time
+                val insertSortTime = measureTimeMillis {
+                    for (n in 1..iloscRazy.toString().toInt())
+                        lista.insertSort()
+                }
+                czasInsert.text = "${insertSortTime}ms"
 
-            //HeapSort Time
-            val heapSortTime = measureTimeMillis {
-                for (n in 1..iloscRazy.toString().toInt())
-                    lista.heapSort()
-            }
-            czasHeap.text = "${heapSortTime}ms"
+                //HeapSort Time
+                val heapSortTime = measureTimeMillis {
+                    for (n in 1..iloscRazy.toString().toInt())
+                        lista.heapSort()
+                }
+                czasHeap.text = "${heapSortTime}ms"
 
-            //MergeSort Time
-            val mergeSortTime = measureTimeMillis {
-                for (n in 1..iloscRazy.toString().toInt())
-                    lista.mergeSort()
+                //MergeSort Time
+                val mergeSortTime = measureTimeMillis {
+                    for (n in 1..iloscRazy.toString().toInt())
+                        lista.mergeSort()
+                }
+                czasMerge.text = "${mergeSortTime}ms"
             }
-            czasMerge.text = "${mergeSortTime}ms"
         }
     }
 }
