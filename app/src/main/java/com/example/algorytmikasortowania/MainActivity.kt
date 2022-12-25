@@ -93,6 +93,54 @@ fun MutableList<Int>.heapify(size: Int, rootIndex: Int) {
     }
 }
 
+//merge sort
+fun MutableList<Int>.mergeSort() {
+    mergeSort(this, 0, size - 1)
+}
+fun mergeSort(list: MutableList<Int>, low: Int, high: Int) {
+    if (low < high) {
+        val mid = (low + high) / 2
+        mergeSort(list, low, mid)
+        mergeSort(list, mid + 1, high)
+        merge(list, low, mid, high)
+    }
+}
+fun merge(list: MutableList<Int>, low: Int, mid: Int, high: Int) {
+
+    val n1 = mid - low + 1
+    val n2 = high - mid
+    val left = MutableList(n1) { 0 }
+    val right = MutableList(n2) { 0 }
+    for (i in 0 until n1) {
+        left[i] = list[low + i]
+    }
+    for (j in 0 until n2) {
+        right[j] = list[mid + 1 + j]
+    }
+    var i = 0
+    var j = 0
+    var k = low
+    while (i < n1 && j < n2) {
+        if (left[i] <= right[j]) {
+            list[k] = left[i]
+            i++
+        } else {
+            list[k] = right[j]
+            j++
+        }
+        k++
+    }
+    while (i < n1) {
+        list[k] = left[i]
+        i++
+        k++
+    }
+    while (j < n2) {
+        list[k] = right[j]
+        j++
+        k++
+    }
+}
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,7 +159,7 @@ class MainActivity : AppCompatActivity() {
         btnSortuj.setOnClickListener {
 
             lista.clear()
-
+            
             for (i in 1..iloscElementow.toString().toInt()){
                 lista.add(Random.nextInt())
             }
@@ -129,18 +177,27 @@ class MainActivity : AppCompatActivity() {
                     lista.quickSort()
             }
             czasQuick.text = "${quickSortTime}ms"
+
             //InsertSort Time
             val insertSortTime = measureTimeMillis {
                 for (n in 1..iloscRazy.toString().toInt())
                     lista.insertSort()
             }
             czasInsert.text = "${insertSortTime}ms"
+
             //HeapSort Time
             val heapSortTime = measureTimeMillis {
                 for (n in 1..iloscRazy.toString().toInt())
                     lista.heapSort()
             }
             czasHeap.text = "${heapSortTime}ms"
+
+            //MergeSort Time
+            val mergeSortTime = measureTimeMillis {
+                for (n in 1..iloscRazy.toString().toInt())
+                    lista.mergeSort()
+            }
+            czasMerge.text = "${mergeSortTime}ms"
         }
     }
 }
